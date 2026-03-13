@@ -1,66 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercício 2 - Processar array</title>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Exercício 2 - Processar array</h1>
-    <p>
-      Digite números separados por vírgula e use os botões. Corrija o
-      <code>exercicio2.js</code> criando uma função genérica (ex.:
-      <code>processarArray</code>) em vez de três funções com lógica repetida.
-    </p>
-    <div>
-      <label
-        >Números:
-        <input
-          type="text"
-          id="numeros"
-          value="1,2,3,4,5"
-          placeholder="1,2,3,4,5"
-      /></label>
+    <p>Digite números separados por vírgula e use os botões. Corrija o <code>exercicio2.js</code> criando uma função genérica (ex.: <code>processarArray</code>) em vez de três funções com lógica repetida.</p>
+    <div><label>Números: <input type="text" id="numeros" value="1,2,3,4,5" placeholder="1,2,3,4,5" /></label></div>
+    <div style="margin-top: 0.5rem;">
+        /* renomear os campos de id para ser compativel com o que tipoOperacao espera em ProcessarOperacao(array, tipoOperacao) */
+        <button type="button" id="dobrarArray">Dobrar</button>
+        <button type="button" id="aoQuadradoArray">Ao quadrado</button>
+        <button type="button" id="formatarArray">Formatar</button>
     </div>
-    <div style="margin-top: 0.5rem">
-      /* renomear os campos de id para ser compativel com o que tipoOperacao
-      espera em ProcessarOperacao(array, tipoOperacao) */
-      <button type="button" id="dobrarArray">Dobrar</button>
-      <button type="button" id="aoQuadradoArray">Ao quadrado</button>
-      <button type="button" id="formatarArray">Formatar</button>
-    </div>
-    <pre id="resposta" style="margin-top: 1rem"></pre>
+    <pre id="resposta" style="margin-top: 1rem;"></pre>
     <script src="exercicio2.js"></script>
     <script>
-      function MontarArray() {
-        var str = document.getElementById("numeros").value.trim();
-        return str
-          ? str
-              .split(",")
-              .map(function (s) {
-                return parseFloat(s.trim());
-              })
-              .filter(function (n) {
-                return !isNaN(n);
-              })
-          : [1, 2, 3, 4, 5];
-      }
+        function MontarArray() {
 
-      const operacoes = {
-        dobrarArray: document.getElementById("dobrarArray"),
-        aoQuadradoArray: document.getElementById("aoQuadradoArray"),
-        formatarArray: document.getElementById("formatarArray"),
-      };
+            //Procura um elemento com o id ='numeros' e armazena o value="1,2,3,4,5"        
+            var str = document.getElementById('numeros').value.trim();
+            //retorna a array [1, 2, 3, 4, 5]
+            return str ? str.split(',').map(function (s) { return parseFloat(s.trim()); }).filter(function (n) { return !isNaN(n); }) : [1, 2, 3, 4, 5];
+        }
 
-      Object.keys(operacoes).forEach((tipoOperacao) => {
-        const OperacaoSelecionada = operacoes[tipoOperacao];
-        OperacaoSelecionada.addEventListener("click", function () {
+        //No exercicio1.html eu criei as const btnOnline e btnLoja para buscar o Id btnOnline e btnLoja, nesse exercicio eu criei uma const que identifica cada elemento 
+const operacoes = {
+        //operacoes é uma array operacoes["dobrarArray", "aoQuadradoArray","formatarArray" ] que recebe o valor do Id do elemento
+        dobrarArray: document.getElementById('dobrarArray'),
+        aoQuadradoArray:  document.getElementById('aoQuadradoArray'),
+        formatarArray:  document.getElementById('formatarArray'),
+    };
+
+   
+
+//Com mais botoes começa a ter a necessidade de ESCALABILIDADE. Imagina se fossem 30 botoes. Pra isso criei um foreach qu percorre a array operacoes["dobrarArray", "aoQuadradoArray","formatarArray" ]
+Object.keys(operacoes).forEach(tipoOperacao => {
+
+    //essa constante pega qual foi o botao clicado 
+    const OperacaoSelecionada = operacoes[tipoOperacao];
+    
+    //Com o foreach eu não preciso repetir codigo criando um addEventListener pra cada uma das operações
+    OperacaoSelecionada.addEventListener('click', function () {
+
+        // essa const retorna uma array, não precisamos saber o processo por tras dessa chamada
           const array = MontarArray();
-          const resposta = ProcessarOperacao(array, tipoOperacao);
-          document.getElementById("resposta").textContent =
-            JSON.stringify(resposta);
+
+          //A const ENVIA uma REQUISIÇÃO. "Eu tenho essa array e o tipoOperacao que o usuario clicou"          
+           const resposta =  ProcessarOperacao(array, tipoOperacao);            
+
+            // Exibe a RESPOSTA ProcessarOperacao(array, tipoOperacao) RETORNOU
+           document.getElementById('resposta').textContent = JSON.stringify(resposta);
         });
-      });
+ 
+})      
     </script>
-  </body>
+</body>
 </html>

@@ -4,55 +4,75 @@
 // (você pode usar getters no Carro que leem de this.motor e this.radio).
 
 class Motor {
-  constructor() {
-    this.ligado = false;
-  }
+    constructor() {
+        // o motor ta desligado this.ligado = estado(false/true)
+        this.ligado = false;
+    }
 
-  LigarDesligarMotor(estado) {
-    this.ligado = estado;
-    return this.ligado ? "Ligado" : "Desligado";
-  }
+    //LigarDesligarMotor é um metodo que recebe o estado atual do motor(se ta ligado ou desligado) e muda o estado atual do motor (liga ou desliga).
+    LigarDesligarMotor(estado) {
+        this.ligado = estado;
+        return this.ligado ? "Ligado" : "Desligado";
+    }
 }
 
 class Radio {
-  constructor() {
-    this.ligado = false;
-    this.volume = 10;
-  }
+    constructor() {
+        // o radio ta desligado this.ligado = estado(false/true)
+        this.ligado = false;
+        // o radio pode ligar em qualquer volume, nesse caso volume=10
+        this.volume = 10;
+    }
 
-  LigarDesligarRadio(estado) {
-    this.ligado = estado;
-    return this.ligado ? "Ligado" : "Desligado";
-  }
+    //LigarDesligarRadio é um metodo que recebe o estado atual do radio(se ta ligado ou desligado) e muda o estado atual do radio (liga ou desliga).
+    LigarDesligarRadio(estado) {
+        this.ligado = estado;
+        return this.ligado ? "Ligado" : "Desligado";
+    }
 
-  AlterarVolume() {
-    this.volume++;
-  }
+    AlterarVolume() {
+        //ao clicar em AlterarVolume() o usuario esta pegando o valor atual e adicionando mais 1. é um looping que nesse caso começa com 10 e aumenta 11,12,13.... conforme for clicando no botao
+        this.volume++;
+    }
 }
 
 class Carro {
-  constructor() {
-    this.motor = new Motor();
-    this.radio = new Radio();
-  }
+    constructor() {
+        // O construtor serve para montar o carro. ele "coloca todas as peças do Carro" (motor, radio, ar condicionado)
+        this.motor = new Motor();
+        //INSTANCIAR é criar um radio para o carro. voce nao usa o molde para o radio Radio(), voce cria um pro seu carro this.radio
+        this.radio = new Radio();
+    }
 
-  get motorLigado() {
-    return this.motor.ligado;
-  }
-  get radioLigado() {
-    return this.radio.ligado;
-  }
-  get volume() {
-    return this.radio.volume;
-  }
+    // Getters: Ao clicar em ligarMotor, Carro faz uma REQUISICAO(Pode ligar o motor?) ao motor
+    get motorLigado() {
+        return this.motor.ligado;
+        //o motor responde ligando ou desligando o motor
+    }
+    // Getters: Ao clicar em ligarRadio, Carro faz uma REQUISICAO(Pode ligar o radio?) ao motor
+    get radioLigado() {
+        return this.radio.ligado;
+        //o radio responde ligando ou desligando o radio
+    }
+    // Getters: Ao clicar em aumentarVolume, Carro faz uma REQUISICAO(Pode ligar o motor?) ao motor
+    get volume() {
+        return this.radio.volume;
+        //o radio responde aumentando o volume (Era Aueba tocando)
+    }
 
-  LigarMotor(status) {
-    return this.motor.LigarDesligarMotor(status);
-  }
-  LigarRadio(status) {
-    return this.radio.LigarDesligarRadio(status);
-  }
-  AlterarVolume() {
-    return this.radio.AlterarVolume();
-  }
+    // Métodos de ação que delegam para as classes especialistas
+    LigarMotor(status) {
+        //o carro precisa ligar o motor, ele nao se importa em como o motor funciona, ele só precisa que ao clicar no botao, o motor ligue
+        return this.motor.LigarDesligarMotor(status);
+    }
+     LigarRadio(status) {
+        //o carro precisa ligar o radio, ele nao se importa em como o radio funciona, ele só precisa que ao clicar no botao, o radio ligue
+        return this.radio.LigarDesligarRadio(status);
+    }
+    AlterarVolume(){
+        //o carro precisa aumentar o volume, ele nao se importa em como o radio funciona, ele só precisa que ao clicar no botao, a musica toque mais alto
+        return this.radio.AlterarVolume();
+    }
 }
+
+//se voce perceber bem, a logica de LigarDesligarRadio() e LigarDesligarMotor() é exatamente igual, aqui poderia ser criado um metodo generico. No C# aqui que entra o conceito de INTERFACES

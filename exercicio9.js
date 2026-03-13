@@ -4,29 +4,28 @@
 // Depois: filtrarPares(arr) chama filtrarArray(arr, function(n) { return n % 2 === 0; });
 //         filtrarMaioresQue5(arr) chama filtrarArray(arr, function(n) { return n > 5; });
 
-const filtrarPares = (array) => {
-  return FiltrarArray(array, function (n) {
-    return n % 2 === 0;
-  });
-};
+// 4. Depois: filtrarPares(arr) chama filtrarArray(arr, function(n) { return n % 2 === 0; });
+const filtrarPares = (array) => {return FiltrarArray(array, function(n) { return n % 2 === 0; });}
 
-function filtrarMaioresQue5(array) {
-  return FiltrarArray(array, function (n) {
-    return n > 5;
-  });
-}
+function filtrarMaioresQue5(array) { return FiltrarArray(array, function(n){return n > 5});}
 
-function FiltrarArray(array, criterio) {
+//1. criar filtrarArray(array, criterio) 
+function FiltrarArray(array, criterio){
+//3. Dentro de filtrarArray: um for que percorre o array e adiciona ao resultado só os itens em que criterio(item) é true.
   let resultado = [];
-  for (let i = 0; i < array.length; i++) {
-    if (criterio(array[i])) {
-      resultado.push(array[i]);
+    for (let i = 0; i < array.length; i++) {
+        if (criterio(array[i])) {  // -> criterio passando cada numero da array function(n) -> criterio(array[i])) 
+            resultado.push(array[i]); 
+        }
     }
-  }
-  return resultado;
+    return resultado;
+
 }
-function Criterio(array) {
-  /* 
+
+//2. criterio é uma função que recebe um item e retorna true/false.
+function Criterio(array){
+
+    /* 
     FUNÇÃO ANONIMA
     Na função filtrarPares, existe uma regra: function(n) { return n % 2 === 0; }.
     Essa regra é enviada para dentro de FiltrarArray(array, criterio) atraves do parametro criterio

@@ -88,26 +88,41 @@
     <script>
 
 const operacoes = {
-        metade:  document.getElementById('metade'), 
+        //operacoes é uma array operacoes["dobrarArray", "aoQuadradoArray","formatarArray" ] que recebe o valor do Id do elemento
+        metade:  document.getElementById('metade'), //ordem mais lógica é a crescente
         dobrar: document.getElementById('dobrar'),
         triplicar:  document.getElementById('triplicar'),
+        //quadruplicar nao existe:  document.getElementById('quadruplicar'),
     };
-    
+
+    //Criei um foreach que percorre a array operacoes["tipoOperacao", "tipoOperacao","tipoOperacao" ]
 Object.keys(operacoes).forEach(tipoOperacao => {
 const numeroFormatado = document.getElementById('numero').addEventListener('click', function () { FormatarNumero(numero) });
+
     
     const OperacaoSelecionada = operacoes[tipoOperacao];
-    const calculo = Calcular(numeroFormatado, tipoOperacao);
-    OperacaoSelecionada.addEventListener('click', function () { Visualizar(calculo); });
+
+     const calculo = Calcular(numeroFormatado, tipoOperacao);
+
+    //Com o foreach eu não preciso repetir codigo criando um addEventListener pra cada uma das operações
+   OperacaoSelecionada.addEventListener('click', function () { Visualizar(calculo); });
 }
 )
 
 Object.keys(operacoes).forEach(tipoOperacao => {
     
+    //O que essa constante faz?? ex.2
     const btnTipoOperacao = operacoes[tipoOperacao];
+
     btnTipoOperacao.addEventListener('click', function () {
+
+        // Const para armazenar o valor digitado
         const valorDigitado = PegarElementoPeloId();
+
+        // 2. Chama a função de calcular (que deve estar no seu exercicio5.js)
         const resultadoCalculado = Calcular(valorDigitado, tipoOperacao);
+
+        // 3. Usa a função de visualizar/mostrar
         Visualizar(resultadoCalculado);
     });
 });
