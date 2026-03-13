@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Carro</title>
+</head>
+<body>
+    <h1>Exercício 3 - Carro</h1>
+    <p>Use os botões e veja o estado. Corrija o <code>exercicio3.js</code> usando composição: classes <code>Motor</code> e <code>Radio</code>, e o Carro usando-as (sem mudar o comportamento na tela).</p>
+    <div>
+        <button type="button" id="ligarMotor">Ligar motor</button>
+        <button type="button" id="ligarRadio">Ligar rádio</button>
+        <button type="button" id="aumentarVolume">Aumentar volume</button>
+    </div>
+    <section id="resultado" style="margin-top: 1rem;"></section>
+    <script src="exercicio3.js"></script>
+    <script>
+        var carro = new Carro();
+        function atualizar() {
+            var msg = 'Motor: ' + (carro.motorLigado ? 'ligado' : 'desligado') +
+                ' | Rádio: ' + (carro.radioLigado ? 'ligado' : 'desligado') +
+                ' | Volume: ' + carro.volume;
+            document.getElementById('resultado').innerHTML = '<p>' + msg + '</p>';
+        }
+        document.getElementById('ligarMotor').addEventListener('click', function () { carro.ligarMotor(); atualizar(); });
+        document.getElementById('ligarRadio').addEventListener('click', function () { carro.ligarRadio(); atualizar(); });
+        document.getElementById('aumentarVolume').addEventListener('click', function () { carro.aumentarVolume(); atualizar(); });
+        atualizar();
+    </script>
+</body>
+</html>

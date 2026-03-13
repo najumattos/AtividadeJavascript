@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6 - Lista de itens</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #fff8e8 0%, #e8f5f0 100%);
+            margin: 0;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(90, 130, 110, 0.15);
+        }
+        .carinha {
+            display: inline-block;
+            width: 72px;
+            height: 72px;
+            line-height: 72px;
+            text-align: center;
+            font-size: 42px;
+            background: linear-gradient(145deg, #fff0d4, #e0f5ec);
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 3px solid rgba(140, 180, 120, 0.5);
+        }
+        h1 { margin: 0 0 0.5rem; font-size: 1.4rem; color: #3d5a3a; }
+        p { margin: 0 0 1.25rem; font-size: 0.95rem; line-height: 1.5; color: #555; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 2px solid #d8e8d0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        input[type="text"]:focus { outline: none; border-color: #7ab86a; }
+        .botoes { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        #adicionar { background: linear-gradient(145deg, #7ab86a, #5a9850); color: #fff; }
+        #limpar { background: linear-gradient(145deg, #e8a878, #d89060); color: #fff; }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
+        #resultado {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            background: #f8fcf0;
+            border-radius: 10px;
+            border: 1px solid #e0ecd8;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+        code { background: #e8f0e0; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carinha" aria-hidden="true">👋</div>
+        <h1>Exercício 6 – Lista de itens</h1>
+        <p>Adicione itens ou limpe a lista. Corrija o <code>exercicio6.js</code>: a forma de <strong>montar cada linha</strong> da lista está repetida. Crie uma função (ex.: <code>montarLinha</code> ou <code>formatarItem</code>) que receba o texto do item e retorne a string no formato usado, e use essa função ao exibir a lista.</p>
+        <label>Item: <input type="text" id="item" value="" placeholder="Digite um item" /></label>
+        <div class="botoes">
+            <button type="button" id="adicionar">Adicionar</button>
+            <button type="button" id="limpar">Limpar lista</button>
+        </div>
+        <pre id="resultado"></pre>
+    <script src="exercicio6.js"></script>
+    <script>
+        var itens = [];
+        function atualizarTela() {
+            document.getElementById('resultado').textContent = listarItens(itens);
+        }
+        document.getElementById('adicionar').addEventListener('click', function () {
+            var texto = document.getElementById('item').value.trim();
+            if (texto) {
+                adicionarItem(itens, texto);
+                document.getElementById('item').value = '';
+                atualizarTela();
+            }
+        });
+        document.getElementById('limpar').addEventListener('click', function () {
+            limparLista(itens);
+            atualizarTela();
+        });
+        atualizarTela();
+    </script>
+    </div>
+</body>
+</html>

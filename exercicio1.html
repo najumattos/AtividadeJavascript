@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Processar pedido</title>
+</head>
+<body>
+    <h1>Exercício 1 - Processar pedido</h1>
+    <p>Preencha o pedido e clique em Processar ONLINE ou Processar LOJA. Corrija o <code>exercicio1.js</code> eliminando a duplicação do log.</p>
+    <div>
+        <label>ID: <input type="number" id="id" value="1" /></label>
+        <label>Cliente: <input type="text" id="cliente" value="João" /></label>
+        <label>Valor (R$): <input type="number" id="valor" value="100" step="0.01" /></label>
+        <label>Status: <input type="text" id="status" value="novo" /></label>
+    </div>
+    <div style="margin-top: 0.5rem;">
+        <button type="button" id="btnOnline">Processar ONLINE</button>
+        <button type="button" id="btnLoja">Processar LOJA</button>
+    </div>
+    <pre id="resultado" style="margin-top: 1rem;"></pre>
+    <script src="exercicio1.js"></script>
+    <script>
+        function montarPedido() {
+            return {
+                id: document.getElementById('id').value,
+                cliente: document.getElementById('cliente').value.trim(),
+                valor: document.getElementById('valor').value,
+                status: document.getElementById('status').value.trim()
+            };
+        }
+        function capturarLog(fn, pedido) {
+            var logs = [];
+            var orig = console.log;
+            console.log = function () {
+                logs.push(Array.prototype.join.call(arguments, ' '));
+                orig.apply(console, arguments);
+            };
+            fn(pedido);
+            console.log = orig;
+            return logs.join('\n');
+        }
+        document.getElementById('btnOnline').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = capturarLog(processarPedidoOnline, montarPedido());
+        });
+        document.getElementById('btnLoja').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = capturarLog(processarPedidoLoja, montarPedido());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Processar array</title>
+</head>
+<body>
+    <h1>Exercício 2 - Processar array</h1>
+    <p>Digite números separados por vírgula e use os botões. Corrija o <code>exercicio2.js</code> criando uma função genérica (ex.: <code>processarArray</code>) em vez de três funções com lógica repetida.</p>
+    <div><label>Números: <input type="text" id="numeros" value="1,2,3,4,5" placeholder="1,2,3,4,5" /></label></div>
+    <div style="margin-top: 0.5rem;">
+        <button type="button" id="dobrar">Dobrar</button>
+        <button type="button" id="quadrado">Ao quadrado</button>
+        <button type="button" id="formatar">Formatar</button>
+    </div>
+    <pre id="resultado" style="margin-top: 1rem;"></pre>
+    <script src="exercicio2.js"></script>
+    <script>
+        function pegarArray() {
+            var str = document.getElementById('numeros').value.trim();
+            return str ? str.split(',').map(function (s) { return parseFloat(s.trim()); }).filter(function (n) { return !isNaN(n); }) : [1, 2, 3, 4, 5];
+        }
+        document.getElementById('dobrar').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = JSON.stringify(dobrarArray(pegarArray()));
+        });
+        document.getElementById('quadrado').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = JSON.stringify(aoQuadradoArray(pegarArray()));
+        });
+        document.getElementById('formatar').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = JSON.stringify(formatarArray(pegarArray()));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 8 - Formatar moeda</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f5fff0 0%, #e8f5e0 100%);
+            margin: 0;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(90, 140, 60, 0.15);
+        }
+        .carinha {
+            display: inline-block;
+            width: 72px;
+            height: 72px;
+            line-height: 72px;
+            text-align: center;
+            font-size: 42px;
+            background: linear-gradient(145deg, #e0f0d4, #e8f8dc);
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 3px solid rgba(100, 160, 80, 0.4);
+        }
+        h1 { margin: 0 0 0.5rem; font-size: 1.4rem; color: #3a5a2a; }
+        p { margin: 0 0 1.25rem; font-size: 0.95rem; line-height: 1.5; color: #555; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input { width: 100%; padding: 0.6rem 0.75rem; border: 2px solid #c8e0b8; border-radius: 10px; font-size: 1rem; }
+        input:focus { outline: none; border-color: #6aa850; }
+        .botoes { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        #preco { background: linear-gradient(145deg, #7ab86a, #5a9850); color: #fff; }
+        #total { background: linear-gradient(145deg, #8ac878, #6ab060); color: #fff; }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
+        #resultado { margin-top: 1.25rem; padding: 1rem; background: #f0faf0; border-radius: 10px; border: 1px solid #d0e8c8; font-weight: bold; min-height: 52px; }
+        code { background: #e0f0d8; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carinha" aria-hidden="true">&#128176;</div>
+        <h1>Exercício 8 – Formatar moeda</h1>
+        <p>Digite valores e use os botões. Corrija o <code>exercicio8.js</code>: a formatação em &ldquo;R$ X,XX&rdquo; está <strong>repetida</strong> em mais de um lugar. Crie uma única função <code>formatarMoeda(valor)</code> e use em todas as funções que exibem valor em reais.</p>
+        <label>Preço unitário: <input type="number" id="precoUnit" value="19.9" step="0.01" /></label>
+        <label style="margin-top: 0.75rem;">Quantidade: <input type="number" id="qtd" value="3" min="1" /></label>
+        <div class="botoes">
+            <button type="button" id="preco">Ver preço formatado</button>
+            <button type="button" id="total">Ver total formatado</button>
+        </div>
+        <p id="resultado"></p>
+    </div>
+    <script src="exercicio8.js"></script>
+    <script>
+        document.getElementById('preco').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = exibirPreco();
+        });
+        document.getElementById('total').addEventListener('click', function () {
+            document.getElementById('resultado').textContent = exibirTotal();
+        });
+    </script>
+</body>
+</html>

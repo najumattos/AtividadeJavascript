@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5 - Calcular</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8e8 100%);
+            margin: 0;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(80, 140, 120, 0.15);
+        }
+        .carinha {
+            display: inline-block;
+            width: 72px;
+            height: 72px;
+            line-height: 72px;
+            text-align: center;
+            font-size: 42px;
+            background: linear-gradient(145deg, #d4f0e8, #e8f8d4);
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            border: 3px solid rgba(100, 180, 140, 0.4);
+        }
+        h1 { margin: 0 0 0.5rem; font-size: 1.4rem; color: #2d5a4a; }
+        p { margin: 0 0 1.25rem; font-size: 0.95rem; line-height: 1.5; color: #555; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 2px solid #c8e6d8;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        input[type="number"]:focus { outline: none; border-color: #5aa88a; }
+        .botoes { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        #dobrar { background: linear-gradient(145deg, #6bc9a8, #5aa88a); color: #fff; }
+        #triplicar { background: linear-gradient(145deg, #7eb8e0, #5a9bc7); color: #fff; }
+        #metade { background: linear-gradient(145deg, #f0c874, #e0a840); color: #fff; }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
+        #resultado {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            background: #f0faf5;
+            border-radius: 10px;
+            border: 1px solid #d0ead8;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d5a4a;
+            min-height: 52px;
+        }
+        code { background: #e0f0e8; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carinha" aria-hidden="true">🧮</div>
+        <h1>Exercício 5 – Calcular</h1>
+        <p>Digite um número e use os botões. Corrija o <code>exercicio5.js</code>: em vez de repetir &ldquo;ler o input&rdquo; e &ldquo;mostrar o resultado na tela&rdquo; em cada função, crie <strong>duas</strong> funções reutilizáveis: uma para ler o número e outra para exibir o resultado.</p>
+        <label>Número: <input type="number" id="numero" value="10" step="any" /></label>
+        <div class="botoes">
+            <button type="button" id="dobrar">Dobrar</button>
+            <button type="button" id="triplicar">Triplicar</button>
+            <button type="button" id="metade">Metade</button>
+        </div>
+        <p id="resultado"></p>
+    <script src="exercicio5.js"></script>
+    <script>
+        document.getElementById('dobrar').addEventListener('click', function () { dobrar(); });
+        document.getElementById('triplicar').addEventListener('click', function () { triplicar(); });
+        document.getElementById('metade').addEventListener('click', function () { metade(); });
+    </script>
+    </div>
+</body>
+</html>
