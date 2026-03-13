@@ -2,35 +2,47 @@
 // Sua tarefa: criar mostrarErro(campoId, mensagem) que define o textContent do span #erro-{campoId}
 // e limparErros() que zera todos os spans de erro e o #resultado. Use essas funções em validarNome e validarEmail.
 
+// função para chamar todas as validações
 function validarFormulario() {
-    document.getElementById('resultado').textContent = '';
-    var nomeOk = validarNome();
-    var emailOk = validarEmail();
-    if (nomeOk && emailOk) {
-        document.getElementById('resultado').textContent = 'Tudo certo!';
-    }
+  LimparErros();
+  const nomeOk = validarNome();
+  const emailOk = validarEmail();
+  if (nomeOk && emailOk) {
+    MostrarErro("resultado", "Tudo certo!");
+  }
 }
 
 function validarNome() {
-    document.getElementById('erro-nome').textContent = '';
-    var nome = document.getElementById('nome').value.trim();
-    if (!nome) {
-        document.getElementById('erro-nome').textContent = 'Nome é obrigatório.';
-        return false;
-    }
-    return true;
+  const nome = ObterValorCampo("nome");
+  if (!nome) {
+    MostrarErro("erro-nome", "Nome é obrigatório.");
+    return false;
+  }
+  return true;
 }
 
 function validarEmail() {
-    document.getElementById('erro-email').textContent = '';
-    var email = document.getElementById('email').value.trim();
-    if (!email) {
-        document.getElementById('erro-email').textContent = 'E-mail é obrigatório.';
-        return false;
-    }
-    if (email.indexOf('@') === -1) {
-        document.getElementById('erro-email').textContent = 'E-mail inválido.';
-        return false;
-    }
-    return true;
+  const email = ObterValorCampo("email");
+  if (!email) {
+    MostrarErro("erro-email", "Email é obrigatório.");
+    return false;
+  }
+  if (email.indexOf("@") === -1) {
+    MostrarErro("erro-email", "E-mail inválido.");
+    return false;
+  }
+  return true;
 }
+
+const MostrarErro = (campoId, mensagem) =>
+  (document.getElementById(`${campoId}`).textContent = `${mensagem}`);
+
+function LimparErros() {
+  document.getElementById("nome").textContent = "";
+  document.getElementById("erro-email").textContent = "";
+  document.getElementById("resultado").textContent = "";
+}
+const ObterValorCampo = (idCampo) =>
+  document.getElementById(`${idCampo}`).value.trim();
+
+/* Pra esse exercicio nao foi necessario alterar o html */

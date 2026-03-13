@@ -2,20 +2,40 @@
 // Sua tarefa: criar lerNumero() que retorna o número do input (ou 0 se estiver vazio/inválido)
 // e mostrarResultado(valor, texto) que exibe no #resultado algo como "Resultado: 20". Use as duas em dobrar, triplicar e metade.
 
-function dobrar() {
-    var num = parseFloat(document.getElementById('numero').value) || 0;
-    var resultado = num * 2;
-    document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+//arrow function
+const dobrar = (num) => num * 2;
+
+function triplicar(num) {
+  return num * 3;
 }
 
-function triplicar() {
-    var num = parseFloat(document.getElementById('numero').value) || 0;
-    var resultado = num * 3;
-    document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+const metade = (num) => num / 2;
+
+const PegarElementoPeloId = () =>
+  parseFloat(document.getElementById("numero").value);
+
+function Calcular(num, operacao) {
+  let calculo;
+  switch (operacao) {
+    case "metade":
+      calculo = metade(num);
+      break;
+    case "dobrar":
+      calculo = dobrar(num);
+      break;
+    case "triplicar":
+      calculo = metade(num);
+      break;
+    case "quadruplicar":
+      calculo = metade(num);
+      break;
+    default:
+      calculo = 0;
+  }
+  return calculo;
 }
 
-function metade() {
-    var num = parseFloat(document.getElementById('numero').value) || 0;
-    var resultado = num / 2;
-    document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+function Visualizar(resultadoCalculado) {
+  return (document.getElementById("resposta").textContent =
+    "Resultado: " + resultadoCalculado);
 }

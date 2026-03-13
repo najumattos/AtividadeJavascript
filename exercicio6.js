@@ -3,20 +3,24 @@
 // e retorne a string no formato "  - Item: texto". Use essa função dentro do for em listarItens.
 
 function adicionarItem(lista, texto) {
-    lista.push(texto);
+  lista.push(texto);
 }
 
 function limparLista(lista) {
-    lista.length = 0;
+  lista.length = 0;
 }
 
 function listarItens(lista) {
-    if (lista.length === 0) {
-        return '(lista vazia)';
-    }
-    var saida = '';
-    for (var i = 0; i < lista.length; i++) {
-        saida += '  - Item: ' + lista[i] + '\n';
-    }
-    return saida;
+  if (lista.length === 0) {
+    return "(lista vazia)";
+  }
+  let saida = "";
+
+  for (let i = 0; i < lista.length; i++) {
+    saida += MontarLinha(lista[i]);
+  }
+  return saida;
 }
+const MontarLinha = (item) => `  - Item: ${item} \n`;
+
+/*  Pra esse exercicio não foi necessario alterar o html  */

@@ -2,14 +2,17 @@
 // Sua tarefa: criar UMA função (ex.: formatarMensagem ou exibirComBorda) que receba o texto
 // e retorne a string com as linhas de igual e a mensagem no meio. Use essa função em dizerOla e dizerTchau.
 
-function dizerOla(nome) {
-    var linha = '========================================';
-    var msg = 'Olá, ' + nome + '! Seja bem-vindo(a).';
-    return linha + '\n' + msg + '\n' + linha;
+const dizerOla = (nome) => "Olá, " + nome + "! Seja bem-vindo(a).";
+function dizerTchau(nome) {
+  var msg = "Tchau, " + nome + "! Até a próxima.";
+  return msg;
 }
 
-function dizerTchau(nome) {
-    var linha = '========================================';
-    var msg = 'Tchau, ' + nome + '! Até a próxima.';
-    return linha + '\n' + msg + '\n' + linha;
+function MontarSaudacao(nome, saudacao) {
+  var linha = "========================================";
+
+  var msg = saudacao == "dizerOla" ? dizerOla(nome) : dizerTchau(nome);
+  return linha + "\n" + msg + "\n" + linha;
 }
+
+//Pra esse exercicio não foi preciso alterar o html

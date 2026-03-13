@@ -3,22 +3,56 @@
 // delegando as ações para eles. O HTML não deve ser alterado: continua usando carro.motorLigado, carro.radioLigado e carro.volume
 // (você pode usar getters no Carro que leem de this.motor e this.radio).
 
+class Motor {
+  constructor() {
+    this.ligado = false;
+  }
+
+  LigarDesligarMotor(estado) {
+    this.ligado = estado;
+    return this.ligado ? "Ligado" : "Desligado";
+  }
+}
+
+class Radio {
+  constructor() {
+    this.ligado = false;
+    this.volume = 10;
+  }
+
+  LigarDesligarRadio(estado) {
+    this.ligado = estado;
+    return this.ligado ? "Ligado" : "Desligado";
+  }
+
+  AlterarVolume() {
+    this.volume++;
+  }
+}
+
 class Carro {
-    constructor() {
-        this.motorLigado = false;
-        this.radioLigado = false;
-        this.volume = 0;
-    }
+  constructor() {
+    this.motor = new Motor();
+    this.radio = new Radio();
+  }
 
-    ligarMotor() {
-        this.motorLigado = true;
-    }
+  get motorLigado() {
+    return this.motor.ligado;
+  }
+  get radioLigado() {
+    return this.radio.ligado;
+  }
+  get volume() {
+    return this.radio.volume;
+  }
 
-    ligarRadio() {
-        this.radioLigado = true;
-    }
-
-    aumentarVolume() {
-        this.volume++;
-    }
+  LigarMotor(status) {
+    return this.motor.LigarDesligarMotor(status);
+  }
+  LigarRadio(status) {
+    return this.radio.LigarDesligarRadio(status);
+  }
+  AlterarVolume() {
+    return this.radio.AlterarVolume();
+  }
 }

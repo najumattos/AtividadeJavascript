@@ -81,14 +81,36 @@
         <div class="botoes">
             <button type="button" id="dobrar">Dobrar</button>
             <button type="button" id="triplicar">Triplicar</button>
-            <button type="button" id="metade">Metade</button>
+            <button type="button" id="metade">Metade</button> 
         </div>
         <p id="resultado"></p>
     <script src="exercicio5.js"></script>
     <script>
-        document.getElementById('dobrar').addEventListener('click', function () { dobrar(); });
-        document.getElementById('triplicar').addEventListener('click', function () { triplicar(); });
-        document.getElementById('metade').addEventListener('click', function () { metade(); });
+
+const operacoes = {
+        metade:  document.getElementById('metade'), 
+        dobrar: document.getElementById('dobrar'),
+        triplicar:  document.getElementById('triplicar'),
+    };
+    
+Object.keys(operacoes).forEach(tipoOperacao => {
+const numeroFormatado = document.getElementById('numero').addEventListener('click', function () { FormatarNumero(numero) });
+    
+    const OperacaoSelecionada = operacoes[tipoOperacao];
+    const calculo = Calcular(numeroFormatado, tipoOperacao);
+    OperacaoSelecionada.addEventListener('click', function () { Visualizar(calculo); });
+}
+)
+
+Object.keys(operacoes).forEach(tipoOperacao => {
+    
+    const btnTipoOperacao = operacoes[tipoOperacao];
+    btnTipoOperacao.addEventListener('click', function () {
+        const valorDigitado = PegarElementoPeloId();
+        const resultadoCalculado = Calcular(valorDigitado, tipoOperacao);
+        Visualizar(resultadoCalculado);
+    });
+});
     </script>
     </div>
 </body>

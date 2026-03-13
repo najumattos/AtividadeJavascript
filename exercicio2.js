@@ -2,26 +2,26 @@
 // Sua tarefa: criar UMA função genérica que receba o array e uma função de transformação (alta ordem)
 // e use essa função para "dobrar", "ao quadrado" e "formatar" sem repetir o loop.
 
-function dobrarArray(array) {
-    var resultado = [];
-    for (var i = 0; i < array.length; i++) {
-        resultado.push(array[i] * 2);
-    }
-    return resultado;
+function ProcessarOperacao(array, tipoOperacao) {
+  let resposta = [];
+  resposta = tipoOperacao == "dobrarArray" ? dobrarArray(array) : resposta;
+  resposta = tipoOperacao == "aoQuadradoArray" ? aoQuadradoArray(array) : resposta;
+  resposta = tipoOperacao == "formatarArray" ? formatarArray(array) : resposta;
+  return resposta;
 }
 
-function aoQuadradoArray(array) {
-    var resultado = [];
-    for (var i = 0; i < array.length; i++) {
-        resultado.push(array[i] * array[i]);
-    }
-    return resultado;
+function dobrarArray(array) {
+  let arrayDobrada = [];
+  for (let i = 0; i < array.length; i++) {
+    arrayDobrada.push(array[i] * 2);
+  }
+  return arrayDobrada;
 }
+
+const aoQuadradoArray = (array) => array.map((numero) => numero * numero);
 
 function formatarArray(array) {
-    var resultado = [];
-    for (var i = 0; i < array.length; i++) {
-        resultado.push('Número: ' + array[i]);
-    }
-    return resultado;
+  return array.map(function (n) {
+    return "Número: " + n;
+  });
 }

@@ -23,9 +23,17 @@
                 ' | Volume: ' + carro.volume;
             document.getElementById('resultado').innerHTML = '<p>' + msg + '</p>';
         }
-        document.getElementById('ligarMotor').addEventListener('click', function () { carro.ligarMotor(); atualizar(); });
-        document.getElementById('ligarRadio').addEventListener('click', function () { carro.ligarRadio(); atualizar(); });
-        document.getElementById('aumentarVolume').addEventListener('click', function () { carro.aumentarVolume(); atualizar(); });
+        //liga/desliga o motor do carro
+        document.getElementById('ligarMotor').addEventListener('click', function () { carro.LigarMotor(!carro.motorLigado); 
+        atualizar(); });
+
+        //liga/desliga o radio
+        document.getElementById('ligarRadio').addEventListener('click', function () { carro.LigarRadio(!carro.radioLigado); 
+        atualizar(); });
+
+        //aumenta o volume
+        document.getElementById('aumentarVolume').addEventListener('click', function () { carro.AlterarVolume(!carro.volume); 
+        atualizar(); });
         atualizar();
     </script>
 </body>

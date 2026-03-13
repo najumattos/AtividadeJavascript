@@ -3,23 +3,33 @@
 // (ou "R$ 0,00" se o valor for inválido). Use formatarMoeda dentro de exibirPreco e exibirTotal.
 
 function exibirPreco() {
-    var valor = parseFloat(document.getElementById('precoUnit').value);
-    if (isNaN(valor)) {
-        return 'R$ 0,00';
-    }
-    var fixo = valor.toFixed(2);
-    var comVirgula = fixo.replace('.', ',');
-    return 'Preço: R$ ' + comVirgula;
+  const valor = ObterElemento("precoUnit");
+  const valorFormatado = FormatarMoeda(valor);
+  return "Preço: R$ " + valorFormatado;
 }
 
 function exibirTotal() {
-    var preco = parseFloat(document.getElementById('precoUnit').value);
-    var qtd = parseInt(document.getElementById('qtd').value, 10) || 0;
-    var valor = preco * qtd;
-    if (isNaN(valor)) {
-        return 'Total: R$ 0,00';
-    }
-    var fixo = valor.toFixed(2);
-    var comVirgula = fixo.replace('.', ',');
-    return 'Total: R$ ' + comVirgula;
+  const valor = CalcularTotal();
+  return "Total: R$ " + FormatarMoeda(valor);
 }
+
+function FormatarMoeda(valor) {
+  if (isNaN(valor) || valor === null) {
+    valor = 0;
+  }
+  const fixo = valor.toFixed(2);
+  const comVirgula = fixo.replace(".", ",");
+  return comVirgula;
+}
+
+const ObterElemento = (valor) =>
+  parseFloat(document.getElementById(valor).value);
+
+function CalcularTotal() {
+  const preco = ObterElemento("precoUnit");
+  const qtd = ObterElemento("qtd");
+  const valor = preco * qtd;
+  return valor;
+}
+
+/* Não foi necessario alterar o HTML */
