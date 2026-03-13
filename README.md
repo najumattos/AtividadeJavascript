@@ -2,8 +2,6 @@
 
 Este repositório contém a resolução de 9 exercícios de refatoração propostos na disciplina de Desenvolvimento de Sistemas II. O objetivo principal foi aplicar boas práticas de programação, transformar códigos legados em estruturas modernas e facilitar o entendimento dos conceitos aplicados.
 
-LUCAS SE VOCE LER ISSO, EU MEREÇO MB 
-
 ## 🚀 O que foi explorado
 A refatoração não foi apenas visual. Durante o processo, apliquei conceitos fundamentais de JavaScript moderno (ES6+) e arquitetura de código:
 
